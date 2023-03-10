@@ -3,6 +3,7 @@ package africa.soimpaf.api_v1.services;
 import africa.soimpaf.api_v1.interfaces.ProductInterface;
 import africa.soimpaf.api_v1.models.Product;
 import africa.soimpaf.api_v1.repository.ProductRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class ProductService implements ProductInterface {
     @Autowired ProductRepository productRepository;
 

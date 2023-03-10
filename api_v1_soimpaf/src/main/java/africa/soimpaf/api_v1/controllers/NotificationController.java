@@ -24,27 +24,27 @@ public class NotificationController {
 	@Autowired
 	private NotificationService notificationService;
 
-	@GetMapping
+	@GetMapping()
 	public  ResponseEntity<List<Notification>> getAllNotification() {
 		return new ResponseEntity<>(notificationService.getAll(), HttpStatus.OK);
 	}
 
-	@GetMapping("/{id}/single")
+	@GetMapping("/{id}")
 	public ResponseEntity<Optional<Notification>> getSingleNotification(@PathVariable("id") long id) {
 		return new ResponseEntity<>(notificationService.getSingle(id), HttpStatus.OK);
 	}
 
-	@PostMapping("/create")
+	@PostMapping()
 	public ResponseEntity<Notification> createsSingleNotification(@Validated @RequestBody Notification notification) {
 		return new ResponseEntity<>(notificationService.create(notification), HttpStatus.CREATED);
 	}
 
-	@PutMapping("/{id}/update")
+	@PutMapping("/{id}")
 	public  ResponseEntity<Notification>  updateSingleNotification(@PathVariable("id") long id ,@Validated @RequestBody Notification notification) {
 		return new ResponseEntity<>(notificationService.update(id, notification), HttpStatus.UPGRADE_REQUIRED);
 	}
 
-	@DeleteMapping("/{id}/delete")
+	@DeleteMapping("/{id}")
 	public  String deleteSingleNotification(@PathVariable("id") long id) {
 		notificationService.delete(id);
 		return "deleted";

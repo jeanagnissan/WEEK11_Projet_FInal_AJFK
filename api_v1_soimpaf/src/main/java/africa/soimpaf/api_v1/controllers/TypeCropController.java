@@ -19,32 +19,32 @@ import java.util.Optional;
  *
  */
 @RestController
-@RequestMapping("/api/typeCrops")
+@RequestMapping("/api/type-crops")
 public class TypeCropController {
 	@Autowired
 	private TypeCropService typeCropService;
 
-	@GetMapping
+	@GetMapping()
 	public  ResponseEntity<List<TypeCrop>> getAllTypeCrop() {
 		return new ResponseEntity<>(typeCropService.getAll(), HttpStatus.OK);
 	}
 
-	@GetMapping("/{id}/single")
+	@GetMapping("/{id}")
 	public ResponseEntity<Optional<TypeCrop>> getSingleTypeCrop(@PathVariable("id") long id) {
 		return new ResponseEntity<>(typeCropService.getSingle(id), HttpStatus.OK);
 	}
 
-	@PostMapping("/create")
+	@PostMapping()
 	public ResponseEntity<TypeCrop> createsSingleTypeCrop(@Validated @RequestBody TypeCrop typeCrop) {
 		return new ResponseEntity<>(typeCropService.create(typeCrop), HttpStatus.CREATED);
 	}
 
-	@PutMapping("/{id}/update")
+	@PutMapping("/{id}")
 	public  ResponseEntity<TypeCrop>  updateSingleTypeCrop(@PathVariable("id") long id ,@Validated @RequestBody TypeCrop typeCrop) {
 		return new ResponseEntity<>(typeCropService.update(id, typeCrop), HttpStatus.UPGRADE_REQUIRED);
 	}
 
-	@DeleteMapping("/{id}/delete")
+	@DeleteMapping("/{id}")
 	public  String deleteSingleTypeCrop(@PathVariable("id") long id) {
 		typeCropService.delete(id);
 		return "deleted";

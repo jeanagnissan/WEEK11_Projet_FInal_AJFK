@@ -24,27 +24,27 @@ public class OrderController {
 	@Autowired
 	private OrderService orderService;
 
-	@GetMapping
+	@GetMapping()
 	public  ResponseEntity<List<Order>> getAllOrder() {
 		return new ResponseEntity<>(orderService.getAll(), HttpStatus.OK);
 	}
 
-	@GetMapping("/{id}/single")
+	@GetMapping("/{id}")
 	public ResponseEntity<Optional<Order>> getSingleOrder(@PathVariable("id") long id) {
 		return new ResponseEntity<>(orderService.getSingle(id), HttpStatus.OK);
 	}
 
-	@PostMapping("/create")
+	@PostMapping()
 	public ResponseEntity<Order> createsSingleOrder(@Validated @RequestBody Order order) {
 		return new ResponseEntity<>(orderService.create(order), HttpStatus.CREATED);
 	}
 
-	@PutMapping("/{id}/update")
+	@PutMapping("/{id}")
 	public  ResponseEntity<Order>  updateSingleOrder(@PathVariable("id") long id ,@Validated @RequestBody Order order) {
 		return new ResponseEntity<>(orderService.update(id, order), HttpStatus.UPGRADE_REQUIRED);
 	}
 
-	@DeleteMapping("/{id}/delete")
+	@DeleteMapping("/{id}")
 	public  String deleteSingleOrder(@PathVariable("id") long id) {
 		orderService.delete(id);
 		return "deleted";

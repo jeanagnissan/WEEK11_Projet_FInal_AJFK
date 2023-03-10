@@ -24,27 +24,27 @@ public class SliderController {
 	@Autowired
 	private SliderService sliderService;
 
-	@GetMapping
+	@GetMapping()
 	public  ResponseEntity<List<Slider>> getAllSlider() {
 		return new ResponseEntity<>(sliderService.getAll(), HttpStatus.OK);
 	}
 
-	@GetMapping("/{id}/single")
+	@GetMapping("/{id}")
 	public ResponseEntity<Optional<Slider>> getSingleSlider(@PathVariable("id") long id) {
 		return new ResponseEntity<>(sliderService.getSingle(id), HttpStatus.OK);
 	}
 
-	@PostMapping("/create")
+	@PostMapping()
 	public ResponseEntity<Slider> createsSingleSlider(@Validated @RequestBody Slider slider) {
 		return new ResponseEntity<>(sliderService.create(slider), HttpStatus.CREATED);
 	}
 
-	@PutMapping("/{id}/update")
+	@PutMapping("/{id}")
 	public  ResponseEntity<Slider>  updateSingleSlider(@PathVariable("id") long id ,@Validated @RequestBody Slider slider) {
 		return new ResponseEntity<>(sliderService.update(id, slider), HttpStatus.UPGRADE_REQUIRED);
 	}
 
-	@DeleteMapping("/{id}/delete")
+	@DeleteMapping("/{id}")
 	public  String deleteSingleSlider(@PathVariable("id") long id) {
 		sliderService.delete(id);
 		return "deleted";

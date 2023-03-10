@@ -3,10 +3,15 @@
  */
 package africa.soimpaf.api_v1.models;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import africa.soimpaf.api_v1.enums.EnumNotification;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
@@ -20,81 +25,43 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "notifications")
-public class Notification {
+public class Notification  implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	@NotNull(message = "Le nom est oligatoire")
     private EnumNotification transmitter_type;
-	private Boolean read;
+
+	private Boolean farmer_as_read;
+
+	private Boolean buyer_as_read;
+
+	private Boolean admin_as_read;
+
+	private Boolean wadmin_as_read;
+
 	@Column(nullable = false, updatable = false)
 	private String slug;
-	@CreatedDate
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "created_at", columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP",insertable = false, updatable = false)
 	private Date created_at;
-	@UpdateTimestamp
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "updated_at", columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP",insertable = false, updatable = false)
 	private Date updated_at;
 
-	public Notification() {
-		super();
-	}
-	public Notification(long id, EnumNotification transmitter_type,
-						Boolean read, String slug, Date created_at, Date updated_at) {
-		super();
-		this.id = id;
-		this.transmitter_type = transmitter_type;
-		this.read = read;
-		this.slug = slug;
-		this.created_at = created_at;
-		this.updated_at = updated_at;
-	}
+	@ManyToOne
+	@JsonIdentityReference(alwaysAsId = true)
+	private Buyer buyer;
 
-	public Long getId() {
-		//return null;
-		return id;
-	}
+	@ManyToOne
+	@JsonIdentityReference(alwaysAsId = true)
+	private Order order;
 
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public EnumNotification getTransmitter_type() {
-		return transmitter_type;
-	}
-
-	public void setTransmitter_type(EnumNotification transmitter_type) {
-		this.transmitter_type = transmitter_type;
-	}
-
-	public Boolean getRead() {
-		return read;
-	}
-
-	public void setRead(Boolean read) {
-		this.read = read;
-	}
-
-	public String getSlug() {
-		return slug;
-	}
-
-	public void setSlug(String slug) {
-		this.slug = slug;
-	}
-
-	public Date getCreated_at() {
-		return created_at;
-	}
-
-	public void setCreated_at(Date created_at) {
-		this.created_at = created_at;
-	}
-
-	public Date getUpdated_at() {
-		return updated_at;
-	}
-
-	public void setUpdated_at(Date updated_at) {
-		this.updated_at = updated_at;
-	}
+	@ManyToOne
+	@JsonIdentityReference(alwaysAsId = true)
+	private Farmer farmer;
 }

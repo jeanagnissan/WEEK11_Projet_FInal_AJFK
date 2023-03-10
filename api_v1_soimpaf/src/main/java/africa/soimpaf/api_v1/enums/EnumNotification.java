@@ -10,5 +10,5 @@ package africa.soimpaf.api_v1.enums;
 public enum EnumNotification {
 	Admin,
 	Buyer,
-	Famer;
+	Farmer;
 }

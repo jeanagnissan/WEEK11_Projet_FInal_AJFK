@@ -25,27 +25,27 @@ public class BuyerController {
 	@Autowired
 	private BuyerService buyerService;
 
-	@GetMapping
+	@GetMapping()
 	public  ResponseEntity<List<Buyer>> getAllBuyer() {
 		return new ResponseEntity<>(buyerService.getAll(), HttpStatus.OK);
 	}
 
-	@GetMapping("/{id}/single")
+	@GetMapping("/{id}")
 	public ResponseEntity<Optional<Buyer>> getSingleBuyer(@PathVariable("id") long id) {
 		return new ResponseEntity<>(buyerService.getSingle(id), HttpStatus.OK);
 	}
 
-	@PostMapping("/create")
+	@PostMapping()
 	public ResponseEntity<Buyer> createsSingleBuyer(@Validated @RequestBody Buyer buyer) {
 		return new ResponseEntity<>(buyerService.create(buyer), HttpStatus.CREATED);
 	}
 
-	@PutMapping("/{id}/update")
+	@PutMapping("/{id}")
 	public  ResponseEntity<Buyer>  updateSingleBuyer(@PathVariable("id") long id ,@Validated @RequestBody Buyer buyer) {
 		return new ResponseEntity<>(buyerService.update(id, buyer), HttpStatus.UPGRADE_REQUIRED);
 	}
 
-	@DeleteMapping("/{id}/delete")
+	@DeleteMapping("/{id}")
 	public  String deleteSingleBuyer(@PathVariable("id") long id) {
 		buyerService.delete(id);
 		return "deleted";

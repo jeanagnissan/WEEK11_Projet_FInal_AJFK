@@ -29,22 +29,22 @@ public class RatingController {
 		return new ResponseEntity<>(ratingService.getAll(), HttpStatus.OK);
 	}
 
-	@GetMapping("/{id}/single")
+	@GetMapping("/{id}")
 	public ResponseEntity<Optional<Rating>> getSingleRating(@PathVariable("id") long id) {
 		return new ResponseEntity<>(ratingService.getSingle(id), HttpStatus.OK);
 	}
 
-	@PostMapping("/create")
+	@PostMapping()
 	public ResponseEntity<Rating> createsSingleRating(@Validated @RequestBody Rating rating) {
 		return new ResponseEntity<>(ratingService.create(rating), HttpStatus.CREATED);
 	}
 
-	@PutMapping("/{id}/update")
+	@PutMapping("/{id}")
 	public  ResponseEntity<Rating>  updateSingleRating(@PathVariable("id") long id ,@Validated @RequestBody Rating rating) {
 		return new ResponseEntity<>(ratingService.update(id, rating), HttpStatus.UPGRADE_REQUIRED);
 	}
 
-	@DeleteMapping("/{id}/delete")
+	@DeleteMapping("/{id}")
 	public  String deleteSingleRating(@PathVariable("id") long id) {
 		ratingService.delete(id);
 		return "deleted";

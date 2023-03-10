@@ -24,27 +24,27 @@ public class CountryController {
 	@Autowired
 	private CountryService countryService;
 
-	@GetMapping
+	@GetMapping()
 	public  ResponseEntity<List<Country>> getAllCountry() {
 		return new ResponseEntity<>(countryService.getAll(), HttpStatus.OK);
 	}
 
-	@GetMapping("/{id}/single")
+	@GetMapping("/{id}")
 	public ResponseEntity<Optional<Country>> getSingleCountry(@PathVariable("id") long id) {
 		return new ResponseEntity<>(countryService.getSingle(id), HttpStatus.OK);
 	}
 
-	@PostMapping("/create")
+	@PostMapping()
 	public ResponseEntity<Country> createsSingleCountry(@Validated @RequestBody Country country) {
 		return new ResponseEntity<>(countryService.create(country), HttpStatus.CREATED);
 	}
 
-	@PutMapping("/{id}/update")
+	@PutMapping("/{id}")
 	public  ResponseEntity<Country>  updateSingleCountry(@PathVariable("id") long id ,@Validated @RequestBody Country country) {
 		return new ResponseEntity<>(countryService.update(id, country), HttpStatus.UPGRADE_REQUIRED);
 	}
 
-	@DeleteMapping("/{id}/delete")
+	@DeleteMapping("/{id}")
 	public  String deleteSingleCountry(@PathVariable("id") long id) {
 		countryService.delete(id);
 		return "deleted";

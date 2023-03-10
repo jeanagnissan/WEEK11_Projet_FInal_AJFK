@@ -24,27 +24,27 @@ public class RegionController {
 	@Autowired
 	private RegionService regionService;
 
-	@GetMapping
+	@GetMapping()
 	public  ResponseEntity<List<Region>> getAllRegion() {
 		return new ResponseEntity<>(regionService.getAll(), HttpStatus.OK);
 	}
 
-	@GetMapping("/{id}/single")
+	@GetMapping("/{id}")
 	public ResponseEntity<Optional<Region>> getSingleRegion(@PathVariable("id") long id) {
 		return new ResponseEntity<>(regionService.getSingle(id), HttpStatus.OK);
 	}
 
-	@PostMapping("/create")
+	@PostMapping()
 	public ResponseEntity<Region> createsSingleRegion(@Validated @RequestBody Region region) {
 		return new ResponseEntity<>(regionService.create(region), HttpStatus.CREATED);
 	}
 
-	@PutMapping("/{id}/update")
+	@PutMapping("/{id}")
 	public  ResponseEntity<Region>  updateSingleRegion(@PathVariable("id") long id ,@Validated @RequestBody Region region) {
 		return new ResponseEntity<>(regionService.update(id, region), HttpStatus.UPGRADE_REQUIRED);
 	}
 
-	@DeleteMapping("/{id}/delete")
+	@DeleteMapping("/{id}")
 	public  String deleteSingleRegion(@PathVariable("id") long id) {
 		regionService.delete(id);
 		return "deleted";

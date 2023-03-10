@@ -24,27 +24,27 @@ public class WarehouseController {
 	@Autowired
 	private WarehouseService warehouseService;
 
-	@GetMapping
+	@GetMapping()
 	public  ResponseEntity<List<Warehouse>> getAllWarehouse() {
 		return new ResponseEntity<>(warehouseService.getAll(), HttpStatus.OK);
 	}
 
-	@GetMapping("/{id}/single")
+	@GetMapping("/{id}")
 	public ResponseEntity<Optional<Warehouse>> getSingleWarehouse(@PathVariable("id") long id) {
 		return new ResponseEntity<>(warehouseService.getSingle(id), HttpStatus.OK);
 	}
 
-	@PostMapping("/create")
+	@PostMapping()
 	public ResponseEntity<Warehouse> createsSingleWarehouse(@Validated @RequestBody Warehouse warehouse) {
 		return new ResponseEntity<>(warehouseService.create(warehouse), HttpStatus.CREATED);
 	}
 
-	@PutMapping("/{id}/update")
+	@PutMapping("/{id}")
 	public  ResponseEntity<Warehouse>  updateSingleWarehouse(@PathVariable("id") long id ,@Validated @RequestBody Warehouse warehouse) {
 		return new ResponseEntity<>(warehouseService.update(id, warehouse), HttpStatus.UPGRADE_REQUIRED);
 	}
 
-	@DeleteMapping("/{id}/delete")
+	@DeleteMapping("/{id}")
 	public  String deleteSingleWarehouse(@PathVariable("id") long id) {
 		warehouseService.delete(id);
 		return "deleted";

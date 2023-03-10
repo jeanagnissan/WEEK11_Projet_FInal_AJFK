@@ -24,27 +24,27 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 
-	@GetMapping
+	@GetMapping()
 	public  ResponseEntity<List<Product>> getAllProduct() {
 		return new ResponseEntity<>(productService.getAll(), HttpStatus.OK);
 	}
 
-	@GetMapping("/{id}/single")
+	@GetMapping("/{id}")
 	public ResponseEntity<Optional<Product>> getSingleProduct(@PathVariable("id") long id) {
 		return new ResponseEntity<>(productService.getSingle(id), HttpStatus.OK);
 	}
 
-	@PostMapping("/create")
+	@PostMapping()
 	public ResponseEntity<Product> createsSingleProduct(@Validated @RequestBody Product product) {
 		return new ResponseEntity<>(productService.create(product), HttpStatus.CREATED);
 	}
 
-	@PutMapping("/{id}/update")
+	@PutMapping("/{id}")
 	public  ResponseEntity<Product>  updateSingleProduct(@PathVariable("id") long id ,@Validated @RequestBody Product product) {
 		return new ResponseEntity<>(productService.update(id, product), HttpStatus.UPGRADE_REQUIRED);
 	}
 
-	@DeleteMapping("/{id}/delete")
+	@DeleteMapping("/{id}")
 	public  String deleteSingleProduct(@PathVariable("id") long id) {
 		productService.delete(id);
 		return "deleted";

@@ -3,24 +3,27 @@
  */
 package africa.soimpaf.api_v1.models;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.data.annotation.CreatedDate;
 import javax.persistence.*;
 
 /**
- * @author digitalci
- *
+ * @author
  */
 @Getter
 @Setter
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "orders")
-public class Order {
-
+public class Order implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -41,140 +44,33 @@ public class Order {
 
 	@Column(nullable = false, updatable = false)
 	private String slug;
-	@CreatedDate
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "created_at", columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP",insertable = false, updatable = false)
 	private Date created_at;
-	@UpdateTimestamp
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "updated_at", columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP",insertable = false, updatable = false)
 	private Date updated_at;
 
-	@OneToMany(targetEntity = Notification.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "order_id", referencedColumnName = "id")
-	private List<Notification> notifications;
+	@ManyToOne
+	@JsonIdentityReference(alwaysAsId = true)
+	private Buyer buyer;
 
-	@OneToMany(targetEntity = Rating.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "order_id", referencedColumnName = "id")
-	private List<Rating> ratings;
+	@ManyToOne
+	@JsonIdentityReference(alwaysAsId = true)
+	private Product product;
 
-	@OneToMany(targetEntity = Comment.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "order_id", referencedColumnName = "id")
-	private List<Comment> comments;
+	@OneToMany(mappedBy = "order" , cascade = CascadeType.ALL)
+	@JsonIdentityReference(alwaysAsId = true)
+	private List<Notification> notification;
 
-	public Order() {
-		super();
-	}
+	@OneToMany(mappedBy = "order" , cascade = CascadeType.ALL)
+	@JsonIdentityReference(alwaysAsId = true)
+	private List<Rating> rating;
 
-	public Order(long id, Double mass, String coded,
-				 short order_status, Float commission, Float tax,
-				 String slug, Date created_at, Date updated_at,
-				 List<Notification> notifications, List<Rating> ratings, List<Comment> comments) {
-		super();
-		this.id = id;
-		this.mass = mass;
-		this.coded = coded;
-		this.order_status = order_status;
-		this.commission = commission;
-		this.tax = tax;
-		this.slug = slug;
-		this.created_at = created_at;
-		this.updated_at = updated_at;
-		this.notifications = notifications;
-		this.ratings = ratings;
-		this.comments = comments;
-	}
+	@OneToMany(mappedBy = "order" , cascade = CascadeType.ALL)
+	@JsonIdentityReference(alwaysAsId = true)
+	private List<Comment> comment;
 
-	public Long getId() {
-		//return null;
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public Double getMass() {
-		return mass;
-	}
-
-	public void setMass(Double mass) {
-		this.mass = mass;
-	}
-
-	public String getCoded() {
-		return coded;
-	}
-
-	public void setCoded(String coded) {
-		this.coded = coded;
-	}
-
-	public short getOrder_status() {
-		return order_status;
-	}
-
-	public void setOrder_status(short order_status) {
-		this.order_status = order_status;
-	}
-
-	public Float getCommission() {
-		return commission;
-	}
-
-	public void setCommission(Float commission) {
-		this.commission = commission;
-	}
-
-	public Float getTax() {
-		return tax;
-	}
-
-	public void setTax(Float tax) {
-		this.tax = tax;
-	}
-
-	public String getSlug() {
-		return slug;
-	}
-
-	public void setSlug(String slug) {
-		this.slug = slug;
-	}
-
-	public Date getCreated_at() {
-		return created_at;
-	}
-
-	public void setCreated_at(Date created_at) {
-		this.created_at = created_at;
-	}
-
-	public Date getUpdated_at() {
-		return updated_at;
-	}
-
-	public void setUpdated_at(Date updated_at) {
-		this.updated_at = updated_at;
-	}
-
-	public List<Notification> getNotifications() {
-		return notifications;
-	}
-
-	public void setNotifications(List<Notification> notifications) {
-		this.notifications = notifications;
-	}
-
-	public List<Rating> getRatings() {
-		return ratings;
-	}
-
-	public void setRatings(List<Rating> ratings) {
-		this.ratings = ratings;
-	}
-
-	public List<Comment> getComments() {
-		return comments;
-	}
-
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
-	}
 }

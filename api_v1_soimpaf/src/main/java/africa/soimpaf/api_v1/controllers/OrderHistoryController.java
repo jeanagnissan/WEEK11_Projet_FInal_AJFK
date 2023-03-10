@@ -19,32 +19,32 @@ import java.util.Optional;
  *
  */
 @RestController
-@RequestMapping("/api/orderHistorys")
+@RequestMapping("/api/order-historys")
 public class OrderHistoryController {
 	@Autowired
 	private OrderHistoryService orderHistoryService;
 
-	@GetMapping
+	@GetMapping()
 	public  ResponseEntity<List<OrderHistory>> getAllOrderHistory() {
 		return new ResponseEntity<>(orderHistoryService.getAll(), HttpStatus.OK);
 	}
 
-	@GetMapping("/{id}/single")
+	@GetMapping("/{id}")
 	public ResponseEntity<Optional<OrderHistory>> getSingleOrderHistory(@PathVariable("id") long id) {
 		return new ResponseEntity<>(orderHistoryService.getSingle(id), HttpStatus.OK);
 	}
 
-	@PostMapping("/create")
+	@PostMapping()
 	public ResponseEntity<OrderHistory> createsSingleOrderHistory(@Validated @RequestBody OrderHistory orderHistory) {
 		return new ResponseEntity<>(orderHistoryService.create(orderHistory), HttpStatus.CREATED);
 	}
 
-	@PutMapping("/{id}/update")
+	@PutMapping("/{id}")
 	public  ResponseEntity<OrderHistory>  updateSingleOrderHistory(@PathVariable("id") long id ,@Validated @RequestBody OrderHistory orderHistory) {
 		return new ResponseEntity<>(orderHistoryService.update(id, orderHistory), HttpStatus.UPGRADE_REQUIRED);
 	}
 
-	@DeleteMapping("/{id}/delete")
+	@DeleteMapping("/{id}")
 	public  String deleteSingleOrderHistory(@PathVariable("id") long id) {
 		orderHistoryService.delete(id);
 		return "deleted";
