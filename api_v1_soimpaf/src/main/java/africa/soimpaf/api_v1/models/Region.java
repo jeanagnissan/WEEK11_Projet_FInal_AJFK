@@ -7,7 +7,10 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,6 +26,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Table(name = "regions")
 public class Region implements Serializable {
 	@Id
@@ -48,6 +52,6 @@ public class Region implements Serializable {
 	private List<Citie> citie;
 
 	@ManyToOne
-	@JsonIdentityReference(alwaysAsId = true)
+	//@JsonIdentityReference(alwaysAsId = true)
 	private Country country;
 }

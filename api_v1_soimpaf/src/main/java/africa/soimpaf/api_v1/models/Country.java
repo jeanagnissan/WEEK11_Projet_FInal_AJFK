@@ -6,7 +6,9 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,6 +27,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Table(name = "countrys")
 public class Country implements Serializable {
 
@@ -35,7 +38,7 @@ public class Country implements Serializable {
 	@NotNull(message = "Le nom est oligatoire")
     private String name;
 
-	@Column(nullable = false, updatable = false)
+	//@Column(nullable = false, updatable = true)
 	private String slug;
 
 	@Temporal(TemporalType.TIMESTAMP)

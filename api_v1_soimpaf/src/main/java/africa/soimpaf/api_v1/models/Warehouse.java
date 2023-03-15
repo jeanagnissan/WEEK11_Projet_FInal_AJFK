@@ -39,7 +39,7 @@ public class Warehouse implements Serializable {
 
 	private String coded;
 
-	@Column(nullable = false, updatable = false)
+	//@Column(nullable = false, updatable = false)
 	private String slug;
 
 	@NotNull(message = "L'heure d'ouverture  est oligatoire")

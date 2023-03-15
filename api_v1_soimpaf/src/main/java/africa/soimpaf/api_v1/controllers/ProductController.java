@@ -19,6 +19,7 @@ import java.util.Optional;
  *
  */
 @RestController
+@CrossOrigin(allowedHeaders = "*", origins = "*")
 @RequestMapping("/api/products")
 public class ProductController {
 	@Autowired
@@ -41,7 +42,7 @@ public class ProductController {
 
 	@PutMapping("/{id}")
 	public  ResponseEntity<Product>  updateSingleProduct(@PathVariable("id") long id ,@Validated @RequestBody Product product) {
-		return new ResponseEntity<>(productService.update(id, product), HttpStatus.UPGRADE_REQUIRED);
+		return new ResponseEntity<>(productService.update(id, product), HttpStatus.CREATED);
 	}
 
 	@DeleteMapping("/{id}")

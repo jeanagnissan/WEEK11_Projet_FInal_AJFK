@@ -13,47 +13,44 @@ import java.util.Optional;
 public class AdminService implements AdminInterface {
     @Autowired AdminRepository adminRepository;
 
+    /*
+     * Methode de recuperation de tous les admin
+     */
     @Override
     public List<Admin> getAll() {
         return adminRepository.findAll();
     }
 
+    /*
+     * Methode de modification d'un admin
+     */
     @Override
     public Admin create(Admin admin) {
         return adminRepository.save(admin);
     }
 
+    /*
+     * Methode de recuperation d'un admin
+     */
     @Override
     public Optional<Admin> getSingle(long id) {
         return  adminRepository.findById(id);
     }
 
+    /*
+     * Methode de modification d'un admin
+     */
     @Override
     public Admin update(long id, Admin admin) {
         return adminRepository.save(admin);
     }
 
+    /*
+    *Methode de supression d'un admin
+     */
     @Override
     public void delete(long id) {
         adminRepository.deleteById(id);
-    }
-
-    /*@Override
-    public Optional<String> delete(long id) {
-        Optional<Admin> admin = getSingle(id);
-        if (admin.isPresent()) {
-            //return ResponseEntity.ok().body(buyer.get());
-            return "null";
-
-        } else {
-            adminRepository.deleteById(id);
-            return "supression";
-        }
-    }*/
-
-    @Override
-    public Optional<Admin> getById(long id) {
-        return  adminRepository.findById(id);
     }
 
 }

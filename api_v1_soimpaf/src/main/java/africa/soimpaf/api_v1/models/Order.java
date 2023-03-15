@@ -7,7 +7,9 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,6 +24,7 @@ import javax.persistence.*;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Table(name = "orders")
 public class Order implements Serializable {
 	@Id
@@ -42,7 +45,7 @@ public class Order implements Serializable {
 	@Column(nullable = false, updatable = false)
 	private Float tax;
 
-	@Column(nullable = false, updatable = false)
+	//@Column(nullable = false, updatable = false)
 	private String slug;
 
 	@Temporal(TemporalType.TIMESTAMP)

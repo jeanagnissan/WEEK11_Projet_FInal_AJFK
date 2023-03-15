@@ -54,7 +54,7 @@ public class Farmer implements Serializable {
 
 	private String password_confirm;
 
-	@Column(nullable = false, updatable = false)
+	//@Column(nullable = false, updatable = false)
 	private String slug;
 
 	private String picture;

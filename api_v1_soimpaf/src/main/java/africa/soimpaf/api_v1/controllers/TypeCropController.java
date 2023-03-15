@@ -19,6 +19,7 @@ import java.util.Optional;
  *
  */
 @RestController
+@CrossOrigin(allowedHeaders = "*", origins = "*")
 @RequestMapping("/api/type-crops")
 public class TypeCropController {
 	@Autowired
@@ -41,7 +42,7 @@ public class TypeCropController {
 
 	@PutMapping("/{id}")
 	public  ResponseEntity<TypeCrop>  updateSingleTypeCrop(@PathVariable("id") long id ,@Validated @RequestBody TypeCrop typeCrop) {
-		return new ResponseEntity<>(typeCropService.update(id, typeCrop), HttpStatus.UPGRADE_REQUIRED);
+		return new ResponseEntity<>(typeCropService.update(id, typeCrop), HttpStatus.CREATED);
 	}
 
 	@DeleteMapping("/{id}")

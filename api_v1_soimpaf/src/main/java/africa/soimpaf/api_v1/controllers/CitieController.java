@@ -19,6 +19,7 @@ import java.util.Optional;
  *
  */
 @RestController
+@CrossOrigin(allowedHeaders = "*", origins = "*")
 @RequestMapping("/api/cities")
 public class CitieController {
 	@Autowired
@@ -41,7 +42,7 @@ public class CitieController {
 
 	@PutMapping("/{id}")
 	public  ResponseEntity<Citie>  updateSingleCitie(@PathVariable("id") long id ,@Validated @RequestBody Citie citie) {
-		return new ResponseEntity<>(citieService.update(id, citie), HttpStatus.UPGRADE_REQUIRED);
+		return new ResponseEntity<>(citieService.update(id, citie), HttpStatus.CREATED);
 	}
 
 	@DeleteMapping("/{id}")

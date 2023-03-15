@@ -19,6 +19,7 @@ import java.util.Optional;
  *
  */
 @RestController
+@CrossOrigin(allowedHeaders = "*", origins = "*")
 @RequestMapping("/api/regions")
 public class RegionController {
 	@Autowired
@@ -41,7 +42,7 @@ public class RegionController {
 
 	@PutMapping("/{id}")
 	public  ResponseEntity<Region>  updateSingleRegion(@PathVariable("id") long id ,@Validated @RequestBody Region region) {
-		return new ResponseEntity<>(regionService.update(id, region), HttpStatus.UPGRADE_REQUIRED);
+		return new ResponseEntity<>(regionService.update(id, region), HttpStatus.CREATED);
 	}
 
 	@DeleteMapping("/{id}")

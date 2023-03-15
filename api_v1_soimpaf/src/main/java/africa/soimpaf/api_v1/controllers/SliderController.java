@@ -19,6 +19,7 @@ import java.util.Optional;
  *
  */
 @RestController
+@CrossOrigin(allowedHeaders = "*", origins = "*")
 @RequestMapping("/api/sliders")
 public class SliderController {
 	@Autowired
@@ -41,7 +42,7 @@ public class SliderController {
 
 	@PutMapping("/{id}")
 	public  ResponseEntity<Slider>  updateSingleSlider(@PathVariable("id") long id ,@Validated @RequestBody Slider slider) {
-		return new ResponseEntity<>(sliderService.update(id, slider), HttpStatus.UPGRADE_REQUIRED);
+		return new ResponseEntity<>(sliderService.update(id, slider), HttpStatus.CREATED);
 	}
 
 	@DeleteMapping("/{id}")

@@ -6,7 +6,10 @@ package africa.soimpaf.api_v1.models;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,6 +28,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Table(name = "cities")
 public class Citie implements Serializable {
 
@@ -35,7 +39,7 @@ public class Citie implements Serializable {
 	@NotNull(message = "Le nom est oligatoire")
     private String name;
 
-	@Column(nullable = false, updatable = false)
+	//@Column(nullable = false, updatable = false)
 	private String slug;
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -47,6 +51,7 @@ public class Citie implements Serializable {
 	private Date updated_at;
 
 	@ManyToOne
+	//@JsonIgnore
 	@JsonIdentityReference(alwaysAsId = true)
 	private Region region;
 

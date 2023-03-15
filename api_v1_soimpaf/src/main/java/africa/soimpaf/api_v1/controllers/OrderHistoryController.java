@@ -19,6 +19,7 @@ import java.util.Optional;
  *
  */
 @RestController
+@CrossOrigin(allowedHeaders = "*", origins = "*")
 @RequestMapping("/api/order-historys")
 public class OrderHistoryController {
 	@Autowired
@@ -41,7 +42,7 @@ public class OrderHistoryController {
 
 	@PutMapping("/{id}")
 	public  ResponseEntity<OrderHistory>  updateSingleOrderHistory(@PathVariable("id") long id ,@Validated @RequestBody OrderHistory orderHistory) {
-		return new ResponseEntity<>(orderHistoryService.update(id, orderHistory), HttpStatus.UPGRADE_REQUIRED);
+		return new ResponseEntity<>(orderHistoryService.update(id, orderHistory), HttpStatus.CREATED);
 	}
 
 	@DeleteMapping("/{id}")

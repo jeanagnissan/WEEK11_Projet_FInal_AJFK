@@ -6,6 +6,8 @@ package africa.soimpaf.api_v1.models;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +23,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Table(name = "sliders")
 public class Slider implements Serializable {
 
@@ -42,6 +45,6 @@ public class Slider implements Serializable {
 	@Column(name = "updated_at", columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP",insertable = false, updatable = false)
 	private Date updated_at;
 
-	@Column(nullable = false, updatable = false)
+	//@Column(nullable = false, updatable = false)
 	private String slug;
 }

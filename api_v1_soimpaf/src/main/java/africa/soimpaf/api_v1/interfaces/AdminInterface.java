@@ -15,7 +15,4 @@ public interface AdminInterface {
     void delete (long id);
 
     Admin update(long id, Admin admin);
-
-    Optional<Admin> getById(long id);
-
 }

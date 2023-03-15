@@ -19,6 +19,7 @@ import java.util.Optional;
  *
  */
 @RestController
+@CrossOrigin(allowedHeaders = "*", origins = "*")
 @RequestMapping("/api/comments")
 public class CommentController {
 	@Autowired
@@ -41,7 +42,7 @@ public class CommentController {
 
 	@PutMapping("/{id}")
 	public  ResponseEntity<Comment>  updateSingleComment(@PathVariable("id") long id ,@Validated @RequestBody Comment comment) {
-		return new ResponseEntity<>(commentService.update(id, comment), HttpStatus.UPGRADE_REQUIRED);
+		return new ResponseEntity<>(commentService.update(id, comment), HttpStatus.CREATED);
 	}
 
 	@DeleteMapping("/{id}")

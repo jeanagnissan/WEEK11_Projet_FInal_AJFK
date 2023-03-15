@@ -8,7 +8,9 @@ import java.util.Date;
 import java.util.List;
 
 import africa.soimpaf.api_v1.enums.EnumNotification;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,6 +29,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Table(name = "notifications")
 public class Notification  implements Serializable {
 	@Id
@@ -42,7 +45,7 @@ public class Notification  implements Serializable {
 
 	private Boolean wadmin_as_read;
 
-	@Column(nullable = false, updatable = false)
+	//@Column(nullable = false, updatable = false)
 	private String slug;
 
 	@Temporal(TemporalType.TIMESTAMP)

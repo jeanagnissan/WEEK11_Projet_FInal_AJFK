@@ -19,6 +19,7 @@ import java.util.Optional;
  *
  */
 @RestController
+@CrossOrigin(allowedHeaders = "*", origins = "*")
 @RequestMapping("/api/notifications")
 public class NotificationController {
 	@Autowired
@@ -41,7 +42,7 @@ public class NotificationController {
 
 	@PutMapping("/{id}")
 	public  ResponseEntity<Notification>  updateSingleNotification(@PathVariable("id") long id ,@Validated @RequestBody Notification notification) {
-		return new ResponseEntity<>(notificationService.update(id, notification), HttpStatus.UPGRADE_REQUIRED);
+		return new ResponseEntity<>(notificationService.update(id, notification), HttpStatus.CREATED);
 	}
 
 	@DeleteMapping("/{id}")

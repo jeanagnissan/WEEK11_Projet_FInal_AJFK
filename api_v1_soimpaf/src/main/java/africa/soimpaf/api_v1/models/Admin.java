@@ -7,6 +7,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 import africa.soimpaf.api_v1.enums.EnumSex;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,6 +24,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Table(name = "admins")
 public class Admin implements Serializable {
 
@@ -41,7 +44,7 @@ public class Admin implements Serializable {
 	@NotNull(message = "Le mot de passe est oligatoire")
 	private String password;
 
-	@Column(nullable = false, updatable = false)
+	//@Column(nullable = false, updatable = false)
 	private String slug;
 
 	private EnumSex sexe;

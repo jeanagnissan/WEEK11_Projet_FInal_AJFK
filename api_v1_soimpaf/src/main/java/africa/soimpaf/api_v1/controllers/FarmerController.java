@@ -19,6 +19,7 @@ import java.util.Optional;
  *
  */
 @RestController
+@CrossOrigin(allowedHeaders = "*", origins = "*")
 @RequestMapping("/api/farmers")
 public class FarmerController {
 	@Autowired
@@ -38,7 +39,7 @@ public class FarmerController {
 	}
 	@PutMapping("/{id}")
 	public  ResponseEntity<Farmer>  updateSingleFarmer(@PathVariable("id") long id ,@Validated @RequestBody Farmer farmer) {
-		return new ResponseEntity<>(famerService.update(id, farmer), HttpStatus.UPGRADE_REQUIRED);
+		return new ResponseEntity<>(famerService.update(id, farmer), HttpStatus.CREATED);
 	}
 	@DeleteMapping("/{id}")
 	public  String deleteSingleFarmer(@PathVariable("id") long id) {

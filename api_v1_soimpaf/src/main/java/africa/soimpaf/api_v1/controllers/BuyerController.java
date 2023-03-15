@@ -19,6 +19,7 @@ import java.util.Optional;
  *
  */
 @RestController
+@CrossOrigin(allowedHeaders = "*", origins = "*")
 @RequestMapping("/api/buyers")
 public class BuyerController {
 	
@@ -42,7 +43,7 @@ public class BuyerController {
 
 	@PutMapping("/{id}")
 	public  ResponseEntity<Buyer>  updateSingleBuyer(@PathVariable("id") long id ,@Validated @RequestBody Buyer buyer) {
-		return new ResponseEntity<>(buyerService.update(id, buyer), HttpStatus.UPGRADE_REQUIRED);
+		return new ResponseEntity<>(buyerService.update(id, buyer), HttpStatus.CREATED);
 	}
 
 	@DeleteMapping("/{id}")

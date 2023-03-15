@@ -19,6 +19,7 @@ import java.util.Optional;
  *
  */
 @RestController
+@CrossOrigin(allowedHeaders = "*", origins = "*")
 @RequestMapping("/api/ratings")
 public class RatingController {
 	@Autowired
@@ -41,7 +42,7 @@ public class RatingController {
 
 	@PutMapping("/{id}")
 	public  ResponseEntity<Rating>  updateSingleRating(@PathVariable("id") long id ,@Validated @RequestBody Rating rating) {
-		return new ResponseEntity<>(ratingService.update(id, rating), HttpStatus.UPGRADE_REQUIRED);
+		return new ResponseEntity<>(ratingService.update(id, rating), HttpStatus.CREATED);
 	}
 
 	@DeleteMapping("/{id}")

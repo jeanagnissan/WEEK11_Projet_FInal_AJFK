@@ -6,6 +6,8 @@ package africa.soimpaf.api_v1.models;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +23,7 @@ import javax.persistence.*;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Table(name = "order_history")
 public class OrderHistory implements Serializable {
 
@@ -42,8 +45,9 @@ public class OrderHistory implements Serializable {
 	@Column(nullable = false, updatable = false)
 	private Float tax;
 
-	@Column(nullable = false, updatable = false)
-	private String slug;
+	//@Column(nullable = false, updatable = false)
+	private String slug;@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+
 
 	@Column(nullable = false, updatable = false)
 	private Integer order_id;
