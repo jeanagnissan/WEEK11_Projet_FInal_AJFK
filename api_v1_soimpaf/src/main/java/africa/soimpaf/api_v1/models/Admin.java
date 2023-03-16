@@ -39,7 +39,7 @@ public class Admin implements Serializable {
 	private String first_name;
 
 	@Column(nullable = false, updatable = true, unique = true)
-	private String e_mail;
+	private String email;
 
 	@NotNull(message = "Le mot de passe est oligatoire")
 	private String password;

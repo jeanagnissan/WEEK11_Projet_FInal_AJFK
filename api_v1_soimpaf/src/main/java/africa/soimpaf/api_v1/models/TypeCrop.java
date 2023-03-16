@@ -31,7 +31,7 @@ public class TypeCrop implements Serializable  {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 
 	@NotNull(message = "Le nom est oligatoire")
     private String name;

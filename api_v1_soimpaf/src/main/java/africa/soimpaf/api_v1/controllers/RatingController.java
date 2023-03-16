@@ -29,7 +29,6 @@ public class RatingController {
 	public  ResponseEntity<List<Rating>> getAllRating() {
 		return new ResponseEntity<>(ratingService.getAll(), HttpStatus.OK);
 	}
-
 	@GetMapping("/{id}")
 	public ResponseEntity<Optional<Rating>> getSingleRating(@PathVariable("id") long id) {
 		return new ResponseEntity<>(ratingService.getSingle(id), HttpStatus.OK);

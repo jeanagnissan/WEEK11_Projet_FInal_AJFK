@@ -3,7 +3,7 @@
  */
 package africa.soimpaf.api_v1.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import africa.soimpaf.api_v1.models.Notification;
 
@@ -12,6 +12,6 @@ import africa.soimpaf.api_v1.models.Notification;
  *
  */
 @Repository
-public interface NotificationRepository extends CrudRepository<Notification, Long> {
+public interface NotificationRepository extends JpaRepository<Notification, Long> {
 
 }

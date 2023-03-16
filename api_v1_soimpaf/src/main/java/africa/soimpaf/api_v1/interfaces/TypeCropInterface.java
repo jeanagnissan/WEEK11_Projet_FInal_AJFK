@@ -12,12 +12,12 @@ public interface TypeCropInterface {
 
     TypeCrop create(TypeCrop typeCrop);
 
-    Optional<TypeCrop> getSingle(long id);
+    Optional<TypeCrop> getSingle(Long id);
 
-    void delete (long id);
+    String delete (Long id);
 
-    TypeCrop update(long id, TypeCrop typeCrop);
+    TypeCrop update(Long id, TypeCrop typeCrop);
 
-    Optional<TypeCrop> getById(long id);
+    Optional<TypeCrop> getById(Long id);
 
 }

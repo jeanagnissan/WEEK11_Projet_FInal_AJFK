@@ -47,8 +47,8 @@ public class TypeCropController {
 
 	@DeleteMapping("/{id}")
 	public  String deleteSingleTypeCrop(@PathVariable("id") long id) {
-		typeCropService.delete(id);
-		return "deleted";
+		return typeCropService.delete(id);
+		//return "deleted";
 	}
 
 }

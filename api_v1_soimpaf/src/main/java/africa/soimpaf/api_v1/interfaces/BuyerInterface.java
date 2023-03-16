@@ -14,7 +14,7 @@ public interface BuyerInterface {
 
     Optional<Buyer> getSingle(long id);
 
-    void delete (long id);
+    String delete (long id);
 
     Buyer update(long id, Buyer buyer);
 

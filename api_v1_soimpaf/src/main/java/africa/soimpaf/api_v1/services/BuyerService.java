@@ -34,8 +34,16 @@ public class BuyerService implements BuyerInterface {
     }
 
     @Override
-    public void delete(long id) {
-        buyerRepository.deleteById(id);
+    public String delete(long id) {
+        if(!buyerRepository.existProduct(id).isEmpty()){
+            return "Impossible de suprimer ce acheteur car ce element à au moin 1 commande";
+        } else if (!buyerRepository.existNotification(id).isEmpty()) {
+            return "Impossible de suprimer ce acheteur car ce element à deja recus au moin une notification";
+        } else{
+            buyerRepository.deleteById(id);
+            return "success delete";
+        }
+
     }
 
     @Override

@@ -38,19 +38,6 @@ public class WarehouseService implements WarehouseInterface {
         warehouseRepository.deleteById(id);
     }
 
-    /*@Override
-    public Optional<String> delete(long id) {
-        Optional<Warehouse> warehouse = getSingle(id);
-        if (warehouse.isPresent()) {
-            //return ResponseEntity.ok().body(buyer.get());
-            return "null";
-
-        } else {
-            warehouseRepository.deleteById(id);
-            return "supression";
-        }
-    }*/
-
     @Override
     public Optional<Warehouse> getById(long id) {
         return  warehouseRepository.findById(id);

@@ -3,7 +3,7 @@
  */
 package africa.soimpaf.api_v1.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import africa.soimpaf.api_v1.models.Country;
 
@@ -12,6 +12,6 @@ import africa.soimpaf.api_v1.models.Country;
  *
  */
 @Repository
-public interface CountryRepository  extends CrudRepository<Country, Long> {
+public interface CountryRepository  extends JpaRepository<Country, Long> {
 
 }

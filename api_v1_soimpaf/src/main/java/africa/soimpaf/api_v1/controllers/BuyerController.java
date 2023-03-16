@@ -48,8 +48,7 @@ public class BuyerController {
 
 	@DeleteMapping("/{id}")
 	public  String deleteSingleBuyer(@PathVariable("id") long id) {
-		buyerService.delete(id);
-		return "deleted";
+		return buyerService.delete(id);
 	}
 
 }
