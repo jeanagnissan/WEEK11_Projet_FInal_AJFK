@@ -5,6 +5,7 @@ import lombok.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Optional;
 
@@ -63,6 +64,11 @@ public class User extends AbstractEntity {
 
 	@NotNull(message = "Le prenoms est oligatoire")
 	private String first_name;
+
+	@NotNull(message = "Le champ firstname est obligatoire")
+	@NotBlank(message = "Le champ firstname ne peut etre vide")
+	@Column(name = "firstname")
+	private String firstname;
 
 	@Column(nullable = false, updatable = true, unique = true)
 	private String email;

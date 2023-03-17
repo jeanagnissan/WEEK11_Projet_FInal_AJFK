@@ -29,7 +29,7 @@ import java.util.Map;
 import static org.apache.logging.log4j.LogManager.getLogger;
 
 @RestController
-@RequestMapping("/v1/api/rest/auth")
+@RequestMapping("/api/auth")
 @CrossOrigin("*")
 public class AuthController {
 
